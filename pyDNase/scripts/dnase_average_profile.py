@@ -86,8 +86,8 @@ else:
 #write out fw and rv for plotting in other ways, using output file name and .raw.txt extension
 #columns are bp, fw, rv
 #will convert to a numpy array and then print
-bp = range(-window_size, window_size+1)
-dataout = np.concatenate((bp, fw, rv),axis=1)
+bp = range(-args.window_size, args.window_size)
+dataout = np.stack((bp, np.mean(fw,axis=0), np.mean(rv,axis=0)), axis=-1)
 outfilename = args.output + ".raw.txt"
 np.savetxt(outfilename, dataout, fmt='%.6f', delimiter=',')
 
